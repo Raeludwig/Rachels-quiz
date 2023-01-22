@@ -78,10 +78,26 @@ const option2El= document.getElementById('option2');
 const option3El= document.getElementById('option3');
 const option4El= document.getElementById('option4');
 
+option1El.addEventListener('click', (e) => {
+    submitAnswer(e.target.textContent);
+});
+option2El.addEventListener('click', (e) => {
+    submitAnswer(e.target.textContent);
+});
+option3El.addEventListener('click', (e) => {
+    submitAnswer(e.target.textContent);
+});
+option4El.addEventListener('click', (e) => {
+   submitAnswer(e.target.textContent);
+});
 
 function showNextQuestion() {
     // Show the next question
     questionIndex++;
+    
+    // TODO: If there are no more questions, show the results
+    // and stop the timer
+
     let currentQuestion = questions[questionIndex];
     console.log({currentQuestion});
     questionEl.textContent = currentQuestion.question;
@@ -89,21 +105,6 @@ function showNextQuestion() {
     option2El.textContent = currentQuestion.options[1];
     option3El.textContent = currentQuestion.options[2];
     option4El.textContent = currentQuestion.options[3];
-
-    option1El.addEventListener('click', (e) => {
-        submitAnswer(e.target.textContent);
-    });
-    option2El.addEventListener('click', (e) => {
-        submitAnswer(e.target.textContent);
-    });
-    option3El.addEventListener('click', (e) => {
-        submitAnswer(e.target.textContent);
-    });
-    option4El.addEventListener('click', (e) => {
-        submitAnswer(e.target.textContent);
-    });
-    // If there are no more questions, show the results
-    // and stop the timer
 
 
 }
@@ -128,3 +129,12 @@ const highScore =document.getElementById('high-score');
 function showFinishScreen(){
     
 }
+
+
+// function debounce(func, timeout = 500){
+//     let timer;
+//     return (...args) => {
+//       clearTimeout(timer);
+//       timer = setTimeout(() => { func.apply(this, args); }, timeout);
+//     };
+//   }
