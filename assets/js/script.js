@@ -158,8 +158,6 @@ submitBtn.addEventListener("click", function () {
     console.log("working", highScores);
 });
 
-//TODO add showHighScore var
-
 const highScoreBtn= document.getElementById('high-score-btn');
 highScoreBtn.addEventListener("click", showHighScore);
 
@@ -168,6 +166,12 @@ function showHighScore() {
     finishScreen.style.display = "none";
     highScoreEnd.style.display = "";
     startButton.style.display= "none";
+    highScoreEnd.innerHTML = "";
+    highScores.forEach((item) => {
+var container = document.createElement("div");
+container.textContent= item.initials + ":" + item.score;
+highScoreEnd.appendChild(container);
+    })
 }
 
 function loadHighScores (){
