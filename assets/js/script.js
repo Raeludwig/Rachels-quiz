@@ -125,4 +125,4 @@ function submitAnswer(answer) {
 
 const highScore =document.getElementById('high-score');
 
-
+cdsfes
