@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <a>High Score</a>
+        <a id = "high-score-btn">High Score</a>
         <div>Timer: <span id="time-remaining"></span> </div>
     </header>
 
@@ -25,7 +25,7 @@
 
     <button id="start">Start</button>
     <div id="high-score" style="display: none;">High Score</div>
-    <div id="finish-screen" style="display:block">
+    <div id="finish-screen" style="display:none">
         <h3>Enter Initials</h3>
         <input type="text" id="initials" placeholder="ABC"  > <!-- placeholder creates a greyed out option to hint at what you should enter. value will actually keep that as part of the input submitted -->
         <button id="submit">Submit</button>

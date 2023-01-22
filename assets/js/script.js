@@ -99,9 +99,6 @@ function showNextQuestion() {
         return;
     }
 
-    // TODO: If there are no more questions, show the results
-    // and stop the timer
-
     let currentQuestion = questions[questionIndex];
     console.log({ currentQuestion });
     questionEl.textContent = currentQuestion.question;
@@ -116,12 +113,12 @@ function showNextQuestion() {
 
 
 function submitAnswer(answer) {
-    // TODO: Check if the answer is correct
     console.log({ answer });
     let currentQuestion = questions[questionIndex];
     if (answer !== currentQuestion.answer) {
         console.log("Incorrect!");
-        // TODO: Subtract time from the timer
+        endTime= new Date (endTime.getTime() - 10000)
+        
     }
 
     showNextQuestion();
@@ -129,20 +126,24 @@ function submitAnswer(answer) {
 }
 
 
-const highScore = document.getElementById('high-score');
+const highScoreEnd = document.getElementById('high-score');
 const finishScreen = document.getElementById('finish-screen');
 const submitBtn = document.getElementById('submit');
 const initialInput = document.getElementById('initials');
 
-
-function showFinishScreen() {
+function hideQuestions() {
     questionEl.style.display = "none";
     option1El.style.display = "none";
     option2El.style.display = "none";
     option3El.style.display = "none";
     option4El.style.display = "none";
-    finishScreen.style.display = "";
     clearInterval(timeInterval);
+
+
+}
+function showFinishScreen() {
+    hideQuestions();
+    finishScreen.style.display = "";
 }
 
 submitBtn.addEventListener("click", function () {
@@ -152,6 +153,34 @@ submitBtn.addEventListener("click", function () {
 
     }
     );
-    console.log ("working", highScores);
+    showHighScore();
+    saveHighScores();
+    console.log("working", highScores);
 });
 
+//TODO add showHighScore var
+
+const highScoreBtn= document.getElementById('high-score-btn');
+highScoreBtn.addEventListener("click", showHighScore);
+
+function showHighScore() {
+    hideQuestions();
+    finishScreen.style.display = "none";
+    highScoreEnd.style.display = "";
+    startButton.style.display= "none";
+}
+
+function loadHighScores (){
+    var scores = localStorage.getItem("High Scores");
+    if (scores != null){
+        highScores=JSON.parse(scores)
+    } 
+    console.log("high scores", highScores);
+}
+
+function saveHighScores (){
+    localStorage.setItem("High Scores", JSON.stringify(highScores));
+
+}
+
+loadHighScores();
