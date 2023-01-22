@@ -61,7 +61,7 @@ startButton.addEventListener('click', () => {
         var seconds = Math.round(timeDiff);
         timeSpan.innerHTML = seconds;
         if (seconds <=0){
-            //TODO: end the game
+            showFinishScreen ();
         }
     }, 250);
     // Hide the start button
@@ -94,7 +94,11 @@ option4El.addEventListener('click', (e) => {
 function showNextQuestion() {
     // Show the next question
     questionIndex++;
-    
+    if(questionIndex >= questions.length){
+        showFinishScreen();
+        return;
+    }
+   
     // TODO: If there are no more questions, show the results
     // and stop the timer
 
@@ -105,6 +109,7 @@ function showNextQuestion() {
     option2El.textContent = currentQuestion.options[1];
     option3El.textContent = currentQuestion.options[2];
     option4El.textContent = currentQuestion.options[3];
+    
 
 
 }
@@ -125,16 +130,16 @@ function submitAnswer(answer) {
 
 
 const highScore =document.getElementById('high-score');
+const finishScreen = document.getElementById('finish-screen');
 
 function showFinishScreen(){
-    
+    questionEl.style.display ="none";
+    option1El.style.display ="none";
+    option2El.style.display ="none";
+    option3El.style.display ="none";
+    option4El.style.display ="none";
+finishScreen.style.display="";
+clearInterval(timeInterval);
 }
 
 
-// function debounce(func, timeout = 500){
-//     let timer;
-//     return (...args) => {
-//       clearTimeout(timer);
-//       timer = setTimeout(() => { func.apply(this, args); }, timeout);
-//     };
-//   }
