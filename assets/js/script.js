@@ -52,7 +52,7 @@ var questionIndex = -1;
 
 startButton.addEventListener('click', () => {
     // Start the timer
-    let lengthOfQuiz = 3;
+    let lengthOfQuiz = 60;
     endTime = new Date(new Date().getTime() +lengthOfQuiz*1000);
     timeInterval = setInterval(function() {
         var now = new Date();
@@ -125,4 +125,6 @@ function submitAnswer(answer) {
 
 const highScore =document.getElementById('high-score');
 
-cdsfes
+function showFinishScreen(){
+    
+}
