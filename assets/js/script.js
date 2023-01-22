@@ -1,8 +1,8 @@
 const startButton = document.getElementById('start')
 var endTime;
-const timeSpan= document.getElementById('time-remaining');
+const timeSpan = document.getElementById('time-remaining');
 var timeInterval;
-
+var highScores = [];
 
 
 var questions = [
@@ -46,37 +46,37 @@ var questions = [
             "Madrid"
         ],
         answer: "London"
-    }   
+    }
 ]
 var questionIndex = -1;
 
 startButton.addEventListener('click', () => {
     // Start the timer
     let lengthOfQuiz = 60;
-    endTime = new Date(new Date().getTime() +lengthOfQuiz*1000);
-    timeInterval = setInterval(function() {
+    endTime = new Date(new Date().getTime() + lengthOfQuiz * 1000);
+    timeInterval = setInterval(function () {
         var now = new Date();
         var timeDiff = endTime - now;
         timeDiff /= 1000;
         var seconds = Math.round(timeDiff);
-        timeSpan.innerHTML = seconds;
-        if (seconds <=0){
-            showFinishScreen ();
+        timeSpan.textContent = seconds;
+        if (seconds <= 0) {
+            showFinishScreen();
         }
     }, 250);
     // Hide the start button
-    startButton.style.display= "none";
+    startButton.style.display = "none";
     // set current question to 0
- showNextQuestion();
+    showNextQuestion();
     // Show the first question
 });
 
 
-const questionEl= document.getElementById('question');
-const option1El= document.getElementById('option1');
-const option2El= document.getElementById('option2');
-const option3El= document.getElementById('option3');
-const option4El= document.getElementById('option4');
+const questionEl = document.getElementById('question');
+const option1El = document.getElementById('option1');
+const option2El = document.getElementById('option2');
+const option3El = document.getElementById('option3');
+const option4El = document.getElementById('option4');
 
 option1El.addEventListener('click', (e) => {
     submitAnswer(e.target.textContent);
@@ -88,28 +88,28 @@ option3El.addEventListener('click', (e) => {
     submitAnswer(e.target.textContent);
 });
 option4El.addEventListener('click', (e) => {
-   submitAnswer(e.target.textContent);
+    submitAnswer(e.target.textContent);
 });
 
 function showNextQuestion() {
     // Show the next question
     questionIndex++;
-    if(questionIndex >= questions.length){
+    if (questionIndex >= questions.length) {
         showFinishScreen();
         return;
     }
-   
+
     // TODO: If there are no more questions, show the results
     // and stop the timer
 
     let currentQuestion = questions[questionIndex];
-    console.log({currentQuestion});
+    console.log({ currentQuestion });
     questionEl.textContent = currentQuestion.question;
     option1El.textContent = currentQuestion.options[0];
     option2El.textContent = currentQuestion.options[1];
     option3El.textContent = currentQuestion.options[2];
     option4El.textContent = currentQuestion.options[3];
-    
+
 
 
 }
@@ -117,7 +117,7 @@ function showNextQuestion() {
 
 function submitAnswer(answer) {
     // TODO: Check if the answer is correct
-    console.log({answer});
+    console.log({ answer });
     let currentQuestion = questions[questionIndex];
     if (answer !== currentQuestion.answer) {
         console.log("Incorrect!");
@@ -129,17 +129,29 @@ function submitAnswer(answer) {
 }
 
 
-const highScore =document.getElementById('high-score');
+const highScore = document.getElementById('high-score');
 const finishScreen = document.getElementById('finish-screen');
+const submitBtn = document.getElementById('submit');
+const initialInput = document.getElementById('initials');
 
-function showFinishScreen(){
-    questionEl.style.display ="none";
-    option1El.style.display ="none";
-    option2El.style.display ="none";
-    option3El.style.display ="none";
-    option4El.style.display ="none";
-finishScreen.style.display="";
-clearInterval(timeInterval);
+
+function showFinishScreen() {
+    questionEl.style.display = "none";
+    option1El.style.display = "none";
+    option2El.style.display = "none";
+    option3El.style.display = "none";
+    option4El.style.display = "none";
+    finishScreen.style.display = "";
+    clearInterval(timeInterval);
 }
 
+submitBtn.addEventListener("click", function () {
+    highScores.push({
+        initials: initialInput.value,
+        score: timeSpan.textContent || "0"
+
+    }
+    );
+    console.log ("working", highScores);
+});
 
