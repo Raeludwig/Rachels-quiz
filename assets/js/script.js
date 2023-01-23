@@ -3,6 +3,8 @@ var endTime;
 const timeSpan = document.getElementById('time-remaining');
 var timeInterval;
 var highScores = [];
+const quizName= document.getElementById('quizName');
+const quizRules= document.getElementById('quizRules');
 
 
 var questions = [
@@ -69,6 +71,9 @@ startButton.addEventListener('click', () => {
     // set current question to 0
     showNextQuestion();
     // Show the first question
+    quizName.style.display = "none";
+quizRules.style.display = "none";
+// hide starting info
 });
 
 
