@@ -136,6 +136,8 @@ const finishScreen = document.getElementById('finish-screen');
 const submitBtn = document.getElementById('submit');
 const initialInput = document.getElementById('initials');
 
+
+
 function hideQuestions() {
     questionEl.style.display = "none";
     option1El.style.display = "none";
@@ -176,6 +178,9 @@ function showHighScore() {
 var container = document.createElement("div");
 container.textContent= item.initials + ":" + item.score;
 highScoreEnd.appendChild(container);
+quizName.style.display = "none";
+quizRules.style.display = "none";
+// hide starting info
     })
 }
 
