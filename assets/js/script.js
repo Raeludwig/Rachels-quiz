@@ -111,6 +111,7 @@ function showNextQuestion() {
     option2El.textContent = currentQuestion.options[1];
     option3El.textContent = currentQuestion.options[2];
     option4El.textContent = currentQuestion.options[3];
+    
 
 
 
