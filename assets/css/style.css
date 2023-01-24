@@ -11,7 +11,7 @@ body {
 
 h1 {
     font-weight: bolder;
-    font-size: 50px;
+    font-size: 70px;
 }
 
 header {
@@ -44,3 +44,11 @@ h4{
     padding: 10px;
 }
 
+#question{
+  font-size: 50px;
+}
+
+h4:hover{
+  color: #b4869f;
+  font-weight: 600;
+}
