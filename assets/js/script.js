@@ -71,6 +71,12 @@ startButton.addEventListener('click', () => {
     // set current question to 0
     showNextQuestion();
     // Show the first question
+
+    //hide questions until clicked
+    option1El.style.display ="";
+    option2El.style.display ="";
+    option3El.style.display ="";
+    option4El.style.display ="";
     quizName.style.display = "none";
 quizRules.style.display = "none";
 // hide starting info
